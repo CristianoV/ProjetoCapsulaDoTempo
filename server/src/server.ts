@@ -8,6 +8,7 @@ import { resolve } from 'node:path'
 import { authRoutes } from './routes/auth'
 import { memoriesRoutes } from './routes/memories'
 import { uploadRoutes } from './routes/upload'
+import { readdir } from 'node:fs/promises'
 
 const app = fastify()
 
@@ -28,6 +29,16 @@ app.register(jwt, {
 
 app.get('/health', async (request, reply) => {
   return { status: 'online' }
+})
+
+app.get('/uploads/list', async (request, reply) => {
+  try {
+    const files = await readdir(resolve(__dirname, '../uploads'))
+    return { files }
+  } catch (error) {
+    console.error('Erro ao listar arquivos:', error)
+    reply.status(500).send({ message: 'Erro ao listar arquivos.' })
+  }
 })
 
 app.register(authRoutes)
