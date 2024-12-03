@@ -11,15 +11,15 @@ import { uploadRoutes } from './routes/upload'
 
 const app = fastify()
 
+app.register(cors, {
+  origin: '*',
+})
+
 app.register(multipart)
 
 app.register(require('@fastify/static'), {
   root: resolve(__dirname,'../uploads'),
   prefix: '/uploads',
-})
-
-app.register(cors, {
-  origin: '*',
 })
 
 app.register(jwt, {
