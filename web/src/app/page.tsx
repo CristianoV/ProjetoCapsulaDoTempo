@@ -30,6 +30,13 @@ export default async function Home() {
     }
   })
 
+    // teste de autenticação
+    console.log({
+      token,
+      memories: response.data,
+      url: api.defaults.baseURL
+    });
+
   const memories: Memory[] = response.data
 
   if (memories.length == 0) {
