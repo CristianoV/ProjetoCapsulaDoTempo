@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['avatars.githubusercontent.com', 'projeto-capsula-do-tempo-pearl.vercel.app'],
+    domains: [
+      'avatars.githubusercontent.com', 
+      'projetocapsuladotempo-production-ba49.up.railway.app',
+    ],
   },
 };
 
